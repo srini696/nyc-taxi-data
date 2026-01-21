@@ -1,0 +1,19 @@
+{
+    "stateMachineArn": "arn:aws:states:us-east-1:473157801752:stateMachine:VendorApprovalFlow",
+    "name": "VendorApprovalFlow",
+    "status": "ACTIVE",
+    "definition": "{\"Comment\":\"Vendor approval with confidence-based routing\",\"StartAt\":\"ProposeVendor\",\"States\":{\"ProposeVendor\":{\"Type\":\"Task\",\"Resource\":\"arn:aws:lambda:us-east-1:473157801752:function:VendorProposeFunction\",\"Parameters\":{\"vendor_name.$\":\"$.vendor_name\",\"source_system.$\":\"$.source_system\"},\"ResultPath\":\"$.proposal\",\"Next\":\"CheckConfidence\"},\"CheckConfidence\":{\"Type\":\"Choice\",\"Choices\":[{\"Variable\":\"$.proposal.match_confidence\",\"NumericGreaterThanEquals\":95,\"Next\":\"AutoApprove\"},{\"Variable\":\"$.proposal.match_confidence\",\"NumericGreaterThanEquals\":80,\"Next\":\"StewardReview\"}],\"Default\":\"ManualResolution\"},\"AutoApprove\":{\"Type\":\"Task\",\"Resource\":\"arn:aws:lambda:us-east-1:473157801752:function:VendorAutoApproveFunction\",\"Parameters\":{\"vendor_id.$\":\"$.proposal.vendor_id\",\"change_id.$\":\"$.proposal.change_id\"},\"End\":true},\"StewardReview\":{\"Type\":\"Task\",\"Resource\":\"arn:aws:lambda:us-east-1:473157801752:function:VendorSendToQueueFunction\",\"Parameters\":{\"vendor_id.$\":\"$.proposal.vendor_id\",\"execution_arn.$\":\"$$.Execution.Id\"},\"Next\":\"WaitForSteward\"},\"WaitForSteward\":{\"Type\":\"Task\",\"Resource\":\"arn:aws:lambda:us-east-1:473157801752:function:VendorStewardDecisionFunction\",\"Parameters\":{\"vendor_id.$\":\"$.proposal.vendor_id\",\"execution_arn.$\":\"$$.Execution.Id\"},\"HeartbeatSeconds\":3600,\"TimeoutSeconds\":86400,\"End\":true},\"ManualResolution\":{\"Type\":\"Task\",\"Resource\":\"arn:aws:lambda:us-east-1:473157801752:function:VendorSendToQueueFunction\",\"Parameters\":{\"vendor_id.$\":\"$.proposal.vendor_id\",\"execution_arn.$\":\"$$.Execution.Id\"},\"End\":true}}}",
+    "roleArn": "arn:aws:iam::473157801752:role/service-role/StepFunctions-VendorApprovalFlow-role-nhc3y8lld",
+    "type": "STANDARD",
+    "creationDate": "2026-01-06T02:27:34.760000+00:00",
+    "loggingConfiguration": {
+        "level": "OFF",
+        "includeExecutionData": false
+    },
+    "tracingConfiguration": {
+        "enabled": false
+    },
+    "encryptionConfiguration": {
+        "type": "AWS_OWNED_KEY"
+    }
+}
