@@ -1,0 +1,7 @@
+2025-12-29 17:13:24          0 nyc-taxi-raw/
+2025-12-29 17:14:22          0 nyc-taxi-raw/metadata/
+2025-12-29 17:14:43     148556 nyc-taxi-raw/metadata/data_dictionary_trip_records_yellow.pdf
+2025-12-29 17:14:12          0 nyc-taxi-raw/reference/
+2025-12-29 17:15:37      12331 nyc-taxi-raw/reference/taxi_zone_lookup.csv
+2025-12-29 17:14:03          0 nyc-taxi-raw/trips/
+2025-12-29 17:16:26   62293743 nyc-taxi-raw/trips/yellow_tripdata_2025-08.parquet
