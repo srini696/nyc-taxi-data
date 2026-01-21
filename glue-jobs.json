@@ -1,0 +1,230 @@
+{
+    "Jobs": [
+        {
+            "Name": "create_master_tables",
+            "JobMode": "SCRIPT",
+            "JobRunQueuingEnabled": false,
+            "Description": "",
+            "Role": "arn:aws:iam::473157801752:role/AWSGlueServiceRole-NycTaxi",
+            "CreatedOn": "2026-01-05T05:02:24.531000+00:00",
+            "LastModifiedOn": "2026-01-05T05:02:24.531000+00:00",
+            "ExecutionProperty": {
+                "MaxConcurrentRuns": 1
+            },
+            "Command": {
+                "Name": "glueetl",
+                "ScriptLocation": "s3://aws-glue-assets-473157801752-us-east-1/scripts/create_master_tables.py",
+                "PythonVersion": "3"
+            },
+            "DefaultArguments": {
+                "--enable-metrics": "true",
+                "--enable-spark-ui": "true",
+                "--spark-event-logs-path": "s3://aws-glue-assets-473157801752-us-east-1/sparkHistoryLogs/",
+                "--enable-job-insights": "true",
+                "--enable-observability-metrics": "true",
+                "--enable-glue-datacatalog": "true",
+                "--job-bookmark-option": "job-bookmark-disable",
+                "--job-language": "python",
+                "--TempDir": "s3://aws-glue-assets-473157801752-us-east-1/temporary/"
+            },
+            "MaxRetries": 0,
+            "AllocatedCapacity": 10,
+            "Timeout": 480,
+            "MaxCapacity": 10.0,
+            "WorkerType": "G.1X",
+            "NumberOfWorkers": 10,
+            "GlueVersion": "5.0",
+            "ExecutionClass": "STANDARD"
+        },
+        {
+            "Name": "glue-to-rds",
+            "JobMode": "VISUAL",
+            "JobRunQueuingEnabled": false,
+            "Description": "",
+            "Role": "arn:aws:iam::473157801752:role/AWSService_glue_rds_Role",
+            "CreatedOn": "2026-01-09T19:41:51.728000+00:00",
+            "LastModifiedOn": "2026-01-09T20:24:00.506000+00:00",
+            "ExecutionProperty": {
+                "MaxConcurrentRuns": 1
+            },
+            "Command": {
+                "Name": "glueetl",
+                "ScriptLocation": "s3://aws-glue-assets-473157801752-us-east-1/scripts/glue-to-rds.py",
+                "PythonVersion": "3"
+            },
+            "DefaultArguments": {
+                "--enable-metrics": "true",
+                "--enable-spark-ui": "true",
+                "--spark-event-logs-path": "s3://aws-glue-assets-473157801752-us-east-1/sparkHistoryLogs/",
+                "--enable-job-insights": "true",
+                "--enable-observability-metrics": "true",
+                "--enable-glue-datacatalog": "true",
+                "--job-bookmark-option": "job-bookmark-disable",
+                "--job-language": "python",
+                "--TempDir": "s3://aws-glue-assets-473157801752-us-east-1/temporary/"
+            },
+            "Connections": {
+                "Connections": [
+                    "Mysql connection"
+                ]
+            },
+            "MaxRetries": 0,
+            "AllocatedCapacity": 10,
+            "Timeout": 480,
+            "MaxCapacity": 10.0,
+            "WorkerType": "G.1X",
+            "NumberOfWorkers": 10,
+            "GlueVersion": "5.0",
+            "ExecutionClass": "STANDARD"
+        },
+        {
+            "Name": "load_mdm_taxi_zone",
+            "JobMode": "VISUAL",
+            "JobRunQueuingEnabled": false,
+            "Description": "",
+            "Role": "arn:aws:iam::473157801752:role/AWSService_glue_rds_Role",
+            "CreatedOn": "2026-01-01T06:08:56.319000+00:00",
+            "LastModifiedOn": "2026-01-01T06:08:56.319000+00:00",
+            "ExecutionProperty": {
+                "MaxConcurrentRuns": 1
+            },
+            "Command": {
+                "Name": "glueetl",
+                "ScriptLocation": "s3://aws-glue-assets-473157801752-us-east-1/scripts/load_mdm_taxi_zone.py",
+                "PythonVersion": "3"
+            },
+            "DefaultArguments": {
+                "--enable-metrics": "true",
+                "--enable-spark-ui": "true",
+                "--spark-event-logs-path": "s3://aws-glue-assets-473157801752-us-east-1/sparkHistoryLogs/",
+                "--enable-job-insights": "true",
+                "--enable-observability-metrics": "true",
+                "--enable-glue-datacatalog": "true",
+                "--job-bookmark-option": "job-bookmark-disable",
+                "--job-language": "python",
+                "--TempDir": "s3://aws-glue-assets-473157801752-us-east-1/temporary/"
+            },
+            "MaxRetries": 0,
+            "AllocatedCapacity": 10,
+            "Timeout": 480,
+            "MaxCapacity": 10.0,
+            "WorkerType": "G.1X",
+            "NumberOfWorkers": 10,
+            "GlueVersion": "5.0",
+            "ExecutionClass": "STANDARD"
+        },
+        {
+            "Name": "yellow_raw_to_validated",
+            "JobMode": "SCRIPT",
+            "JobRunQueuingEnabled": false,
+            "Description": "",
+            "Role": "arn:aws:iam::473157801752:role/AWSGlueServiceRole-NycTaxi",
+            "CreatedOn": "2026-01-05T04:15:13.831000+00:00",
+            "LastModifiedOn": "2026-01-19T04:00:06.505000+00:00",
+            "ExecutionProperty": {
+                "MaxConcurrentRuns": 3
+            },
+            "Command": {
+                "Name": "glueetl",
+                "ScriptLocation": "s3://aws-glue-assets-473157801752-us-east-1/scripts/yellow_raw_to_validated.py",
+                "PythonVersion": "3"
+            },
+            "DefaultArguments": {
+                "--enable-metrics": "true",
+                "--enable-spark-ui": "true",
+                "--spark-event-logs-path": "s3://aws-glue-assets-473157801752-us-east-1/sparkHistoryLogs/",
+                "--enable-job-insights": "true",
+                "--enable-observability-metrics": "true",
+                "--enable-glue-datacatalog": "true",
+                "--job-bookmark-option": "job-bookmark-disable",
+                "--job-language": "python",
+                "--TempDir": "s3://aws-glue-assets-473157801752-us-east-1/temporary/"
+            },
+            "MaxRetries": 0,
+            "AllocatedCapacity": 10,
+            "Timeout": 480,
+            "MaxCapacity": 10.0,
+            "WorkerType": "G.1X",
+            "NumberOfWorkers": 10,
+            "GlueVersion": "5.0",
+            "ExecutionClass": "STANDARD"
+        },
+        {
+            "Name": "yellow_validated_to_curated",
+            "JobMode": "SCRIPT",
+            "JobRunQueuingEnabled": false,
+            "Description": "",
+            "Role": "arn:aws:iam::473157801752:role/AWSGlueServiceRole-NycTaxi",
+            "CreatedOn": "2026-01-05T05:09:53.680000+00:00",
+            "LastModifiedOn": "2026-01-05T19:54:32.209000+00:00",
+            "ExecutionProperty": {
+                "MaxConcurrentRuns": 1
+            },
+            "Command": {
+                "Name": "glueetl",
+                "ScriptLocation": "s3://aws-glue-assets-473157801752-us-east-1/scripts/yellow_validated_to_curated.py",
+                "PythonVersion": "3"
+            },
+            "DefaultArguments": {
+                "--enable-metrics": "true",
+                "--enable-spark-ui": "true",
+                "--spark-event-logs-path": "s3://aws-glue-assets-473157801752-us-east-1/sparkHistoryLogs/",
+                "--enable-job-insights": "true",
+                "--enable-observability-metrics": "true",
+                "--enable-glue-datacatalog": "true",
+                "--job-bookmark-option": "job-bookmark-disable",
+                "--job-language": "python",
+                "--TempDir": "s3://aws-glue-assets-473157801752-us-east-1/temporary/"
+            },
+            "MaxRetries": 0,
+            "AllocatedCapacity": 10,
+            "Timeout": 480,
+            "MaxCapacity": 10.0,
+            "WorkerType": "G.1X",
+            "NumberOfWorkers": 10,
+            "GlueVersion": "5.0",
+            "ExecutionClass": "STANDARD"
+        },
+        {
+            "Name": "zone-loadto-rds",
+            "JobMode": "VISUAL",
+            "JobRunQueuingEnabled": false,
+            "Description": "",
+            "Role": "arn:aws:iam::473157801752:role/AWSService_glue_rds_Role",
+            "CreatedOn": "2026-01-10T00:15:17.677000+00:00",
+            "LastModifiedOn": "2026-01-10T00:26:25.050000+00:00",
+            "ExecutionProperty": {
+                "MaxConcurrentRuns": 1
+            },
+            "Command": {
+                "Name": "glueetl",
+                "ScriptLocation": "s3://aws-glue-assets-473157801752-us-east-1/scripts/zone-loadto-rds.py",
+                "PythonVersion": "3"
+            },
+            "DefaultArguments": {
+                "--enable-metrics": "true",
+                "--enable-spark-ui": "true",
+                "--spark-event-logs-path": "s3://aws-glue-assets-473157801752-us-east-1/sparkHistoryLogs/",
+                "--enable-job-insights": "true",
+                "--enable-observability-metrics": "true",
+                "--enable-glue-datacatalog": "true",
+                "--job-bookmark-option": "job-bookmark-disable",
+                "--job-language": "python",
+                "--TempDir": "s3://aws-glue-assets-473157801752-us-east-1/temporary/"
+            },
+            "Connections": {
+                "Connections": [
+                    "Mysql connection"
+                ]
+            },
+            "MaxRetries": 0,
+            "AllocatedCapacity": 10,
+            "Timeout": 480,
+            "MaxCapacity": 10.0,
+            "WorkerType": "G.1X",
+            "NumberOfWorkers": 10,
+            "GlueVersion": "5.0",
+            "ExecutionClass": "STANDARD"
+        }
+    ]
+}

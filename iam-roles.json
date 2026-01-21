@@ -1,0 +1,218 @@
+[
+    {
+        "Path": "/",
+        "RoleName": "AWSService_glue_rds_Role",
+        "RoleId": "AROAW4KTHC4MOC4Y2XBSJ",
+        "Arn": "arn:aws:iam::473157801752:role/AWSService_glue_rds_Role",
+        "CreateDate": "2026-01-01T05:10:38+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "glue.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        },
+        "Description": "Allows Glue to call AWS services on your behalf. ",
+        "MaxSessionDuration": 3600
+    },
+    {
+        "Path": "/",
+        "RoleName": "glue-crawler-role",
+        "RoleId": "AROAW4KTHC4MIXKD7CDH2",
+        "Arn": "arn:aws:iam::473157801752:role/glue-crawler-role",
+        "CreateDate": "2025-12-30T22:17:42+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "glue.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        },
+        "Description": "Allows Glue to call AWS services on your behalf. ",
+        "MaxSessionDuration": 3600
+    },
+    {
+        "Path": "/",
+        "RoleName": "lambda_rds_sqs",
+        "RoleId": "AROAW4KTHC4MFQKC7OLBA",
+        "Arn": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+        "CreateDate": "2026-01-05T21:00:31+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "lambda.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        },
+        "Description": "Allows Lambda functions to call AWS services on your behalf.",
+        "MaxSessionDuration": 3600
+    },
+    {
+        "Path": "/",
+        "RoleName": "nyc-taxi-dw-analyst-role",
+        "RoleId": "AROAW4KTHC4MP6G3XQWH7",
+        "Arn": "arn:aws:iam::473157801752:role/nyc-taxi-dw-analyst-role",
+        "CreateDate": "2026-01-21T02:57:21+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "AWS": "arn:aws:iam::473157801752:root"
+                    },
+                    "Action": "sts:AssumeRole",
+                    "Condition": {}
+                }
+            ]
+        },
+        "Description": "",
+        "MaxSessionDuration": 3600
+    },
+    {
+        "Path": "/",
+        "RoleName": "nyc-taxi-dw-engineer-role",
+        "RoleId": "AROAW4KTHC4MOIF5NG3HF",
+        "Arn": "arn:aws:iam::473157801752:role/nyc-taxi-dw-engineer-role",
+        "CreateDate": "2026-01-21T03:04:21+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "redshift.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        },
+        "Description": "Allows Redshift clusters to call AWS services on your behalf.",
+        "MaxSessionDuration": 3600
+    },
+    {
+        "Path": "/",
+        "RoleName": "nyc-taxi-dw-redshift-role",
+        "RoleId": "AROAW4KTHC4MBZPOLWZIH",
+        "Arn": "arn:aws:iam::473157801752:role/nyc-taxi-dw-redshift-role",
+        "CreateDate": "2026-01-21T02:45:49+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "redshift.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        },
+        "Description": "Allows Redshift clusters to call AWS services on your behalf.",
+        "MaxSessionDuration": 3600
+    },
+    {
+        "Path": "/",
+        "RoleName": "nyc-taxi-dw-steward-role",
+        "RoleId": "AROAW4KTHC4MAP3J7VI5J",
+        "Arn": "arn:aws:iam::473157801752:role/nyc-taxi-dw-steward-role",
+        "CreateDate": "2026-01-21T03:07:43+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "redshift.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        },
+        "Description": "Allows Redshift clusters to call AWS services on your behalf.",
+        "MaxSessionDuration": 3600
+    },
+    {
+        "Path": "/service-role/",
+        "RoleName": "nyc-taxi-dw_cloudtrail",
+        "RoleId": "AROAW4KTHC4MFBZ2HKFAD",
+        "Arn": "arn:aws:iam::473157801752:role/service-role/nyc-taxi-dw_cloudtrail",
+        "CreateDate": "2026-01-21T03:30:11+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "cloudtrail.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:SourceArn": "arn:aws:cloudtrail:us-east-1:473157801752:trail/nyc-taxi-dw-audit-trail",
+                            "aws:SourceAccount": "473157801752"
+                        }
+                    }
+                }
+            ]
+        },
+        "Description": "Role for config CloudWathLogs for trail nyc-taxi-dw-audit-trail",
+        "MaxSessionDuration": 3600
+    },
+    {
+        "Path": "/",
+        "RoleName": "s3-lambda",
+        "RoleId": "AROAW4KTHC4MKHJPWRO3S",
+        "Arn": "arn:aws:iam::473157801752:role/s3-lambda",
+        "CreateDate": "2026-01-06T01:56:35+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "lambda.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        },
+        "Description": "Allows Lambda functions to call AWS services on your behalf.",
+        "MaxSessionDuration": 3600
+    },
+    {
+        "Path": "/service-role/",
+        "RoleName": "StepFunctions-nyc-taxi-mdm-pipeline-role-s3klzlpce",
+        "RoleId": "AROAW4KTHC4MFKO622QC2",
+        "Arn": "arn:aws:iam::473157801752:role/service-role/StepFunctions-nyc-taxi-mdm-pipeline-role-s3klzlpce",
+        "CreateDate": "2026-01-10T01:48:13+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "states.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        },
+        "MaxSessionDuration": 3600
+    }
+]

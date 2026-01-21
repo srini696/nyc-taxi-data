@@ -1,0 +1,10 @@
+{
+    "DashboardEntries": [
+        {
+            "DashboardName": "NYC-Taxi-DW-Monitoring",
+            "DashboardArn": "arn:aws:cloudwatch::473157801752:dashboard/NYC-Taxi-DW-Monitoring",
+            "LastModified": "2026-01-20T23:08:36+00:00",
+            "Size": 1778
+        }
+    ]
+}

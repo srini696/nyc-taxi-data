@@ -1,0 +1,925 @@
+{
+    "Functions": [
+        {
+            "FunctionName": "mdm-create-golden-table",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-create-golden-table",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16106091,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-16T23:37:26.000+0000",
+            "CodeSha256": "j6kAvDzt5UyApJj5mqaUeg3Ttx4/zHvx1VFCq6uMtMI=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "6e2497b9-ad97-4473-8541-14cea5240774",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-create-golden-table"
+            }
+        },
+        {
+            "FunctionName": "mdm-check-proposal-status",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-check-proposal-status",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16105287,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-19T19:05:31.000+0000",
+            "CodeSha256": "WZf9YhzCTUnumKYdZhg8pl9dkr61cFUDv+Xjj30498M=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "f98a87ac-0e15-48f0-90c8-02b548ea2e99",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-check-proposal-status"
+            }
+        },
+        {
+            "FunctionName": "SecretsManagerrotation_lambda",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:SecretsManagerrotation_lambda",
+            "Runtime": "python3.10",
+            "Role": "arn:aws:iam::473157801752:role/SecretsManagerRedshiftRot-SecretsManagerRedshiftRot-aELNO8zGCKGB",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 5148334,
+            "Description": "Rotates a Secrets Manager secret for Amazon Redshift credentials using the single user rotation strategy.",
+            "Timeout": 30,
+            "MemorySize": 128,
+            "LastModified": "2026-01-21T02:41:33.041+0000",
+            "CodeSha256": "LptcXFUK2VC3M3PaHSpSTvxJSlHjMTI3Rqp0iUOgc0E=",
+            "Version": "$LATEST",
+            "VpcConfig": {
+                "SubnetIds": [
+                    "subnet-035019ddcaf604cc1",
+                    "subnet-0826e31fd816e808d",
+                    "subnet-06559bb761049eb5a",
+                    "subnet-0cc3bdd4bded8cab8",
+                    "subnet-015a32a4e12b26561",
+                    "subnet-0d5b87d5ae0829b87"
+                ],
+                "SecurityGroupIds": [
+                    "sg-0fbdd85b08ec89173"
+                ],
+                "VpcId": "vpc-0f555e0765b5e806e",
+                "Ipv6AllowedForDualStack": false
+            },
+            "Environment": {
+                "Variables": {
+                    "EXCLUDE_CHARACTERS": ":/@\"'\\",
+                    "REQUIRE_EACH_INCLUDED_TYPE": "true",
+                    "SECRETS_MANAGER_ENDPOINT": "https://secretsmanager.us-east-1.amazonaws.com",
+                    "EXCLUDE_PUNCTUATION": "false",
+                    "PASSWORD_LENGTH": "32"
+                }
+            },
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "8fcdfa6a-f229-454a-b847-5cf5df352e0d",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/SecretsManagerrotation_lambda"
+            }
+        },
+        {
+            "FunctionName": "VendorStewardDecisionFunction",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:VendorStewardDecisionFunction",
+            "Runtime": "python3.12",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16105211,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-06T19:09:05.000+0000",
+            "CodeSha256": "h9OeMyr0DLzG3Idw+kusGmlqxuuSxVE448xBH7I4Vyc=",
+            "Version": "$LATEST",
+            "VpcConfig": {
+                "SubnetIds": [
+                    "subnet-0826e31fd816e808d",
+                    "subnet-06559bb761049eb5a",
+                    "subnet-0d5b87d5ae0829b87"
+                ],
+                "SecurityGroupIds": [
+                    "sg-03a1e3778797c8ff0"
+                ],
+                "VpcId": "vpc-0f555e0765b5e806e",
+                "Ipv6AllowedForDualStack": false
+            },
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "e815ac4e-8ac9-46c5-b652-d65d5179051a",
+            "Layers": [
+                {
+                    "Arn": "arn:aws:lambda:us-east-1:473157801752:layer:MySQLLayer:2",
+                    "CodeSize": 12627564
+                }
+            ],
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/VendorStewardDecisionFunction"
+            }
+        },
+        {
+            "FunctionName": "mdm-update-audit-history",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-update-audit-history",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16106005,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-19T19:01:38.000+0000",
+            "CodeSha256": "/gknrXb6jHoNUwJV681r7kC5lK8d591Hhm/WnsoqZ4E=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "1df5a77d-4121-49f4-aae9-8353aca800fa",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-update-audit-history"
+            }
+        },
+        {
+            "FunctionName": "mdm-fetch-curated-trips",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-fetch-curated-trips",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16106122,
+            "Description": "",
+            "Timeout": 330,
+            "MemorySize": 1024,
+            "LastModified": "2026-01-15T19:16:24.000+0000",
+            "CodeSha256": "i8Ydv1NNydsU4B4YCPPIpRQIvN7ubUYVw1eKDXdS08E=",
+            "Version": "$LATEST",
+            "VpcConfig": {
+                "SubnetIds": [],
+                "SecurityGroupIds": [],
+                "VpcId": "",
+                "Ipv6AllowedForDualStack": false
+            },
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "6d80ac96-1248-4811-8d1e-4b2105dc9531",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-fetch-curated-trips"
+            }
+        },
+        {
+            "FunctionName": "VendorSendToQueueFunction",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:VendorSendToQueueFunction",
+            "Runtime": "python3.12",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16105128,
+            "Description": "",
+            "Timeout": 30,
+            "MemorySize": 128,
+            "LastModified": "2026-01-06T22:37:10.000+0000",
+            "CodeSha256": "Bc3s8K7b9GlJLZYy1U+QK9beLSGB6jpVg4ebJVSHXdE=",
+            "Version": "$LATEST",
+            "VpcConfig": {
+                "SubnetIds": [],
+                "SecurityGroupIds": [],
+                "VpcId": "",
+                "Ipv6AllowedForDualStack": false
+            },
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "2e77893a-13ac-415d-9d63-44df29d35305",
+            "Layers": [
+                {
+                    "Arn": "arn:aws:lambda:us-east-1:473157801752:layer:MySQLLayer:2",
+                    "CodeSize": 12627564
+                }
+            ],
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/VendorSendToQueueFunction"
+            }
+        },
+        {
+            "FunctionName": "mdm-audit-logger",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-audit-logger",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16105119,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-10T20:48:42.000+0000",
+            "CodeSha256": "jqUAL+cjXx09oPCP/w/w10j8yyhzjTVg7FHOSK3wtis=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "5cdc1abc-8b90-41f5-860d-61299808f044",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-audit-logger"
+            }
+        },
+        {
+            "FunctionName": "mdm-process-pipeline",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-process-pipeline",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16108273,
+            "Description": "",
+            "Timeout": 900,
+            "MemorySize": 2048,
+            "LastModified": "2026-01-19T19:04:55.000+0000",
+            "CodeSha256": "yPixtxeUeFN5vZVhqGxClxH9WUm9QfPfbJhiVvBNOPs=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "8810067a-b591-44d2-a8dc-50c450d6e61a",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-process-pipeline"
+            }
+        },
+        {
+            "FunctionName": "mdm-extract-references",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-extract-references",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16107414,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-16T21:00:33.000+0000",
+            "CodeSha256": "8fGY8aMT5U2b5Y1u30EITFkvMzGp9diTivIiLMRZEwk=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "c67d2659-4227-444b-af2c-e4d7a5a4b321",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-extract-references"
+            }
+        },
+        {
+            "FunctionName": "mdm-batch-enrich-trips",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-batch-enrich-trips",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16105862,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-16T21:08:15.000+0000",
+            "CodeSha256": "oGEwb83zgUvejcr8cCKRHsTbnFAcPfrf3vidQ6WYkRI=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "c721856b-11de-4d58-99c8-d2001196fd27",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-batch-enrich-trips"
+            }
+        },
+        {
+            "FunctionName": "mdm-log-rejected-records",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-log-rejected-records",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16105764,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-16T22:12:10.000+0000",
+            "CodeSha256": "ptE8g9pgXwix00pK07+4Yofe3wrgmod5mWQAPVWShmg=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "f6e8ab99-c72d-4d74-a46a-e3fc8963c16e",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-log-rejected-records"
+            }
+        },
+        {
+            "FunctionName": "mdm-send-steward-notification",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-send-steward-notification",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 1327,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-17T05:09:58.000+0000",
+            "CodeSha256": "wXilMuv1i9NGInAH0RznP7ZfSl3nrfHSs4nhx4KMnVI=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "7db9c810-6c4a-4672-9562-e051c9081fc8",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-send-steward-notification"
+            }
+        },
+        {
+            "FunctionName": "mdm-aggregate-review-items",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-aggregate-review-items",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/service-role/mdm-aggregate-review-items-role-c04tc6kk",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16023949,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-18T04:54:02.000+0000",
+            "CodeSha256": "O9KshAytVljVIcoUY5ryZzWo84iTdDPXu8w/HaX9u5o=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "292c6fff-9bf2-41e7-82b6-c08b3ddfa2db",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-aggregate-review-items"
+            }
+        },
+        {
+            "FunctionName": "mdm-freshness-check",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-freshness-check",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16105040,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-10T01:08:04.000+0000",
+            "CodeSha256": "6u2ejedbDx+0bD3JbCDH841ZwtWRauuzsXRoCU0j2UU=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "6ae3ba25-1f71-4f83-95bd-6af95df8afac",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-freshness-check"
+            }
+        },
+        {
+            "FunctionName": "mdm-propose-golden-v2",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-propose-golden-v2",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 17796090,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-15T20:15:56.000+0000",
+            "CodeSha256": "2wepjJXZKcDUzatXfgVmPaIg9XmlMhyJBF3L6RLCIpc=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "e835949d-e274-45b6-a115-d538e3e679bd",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-propose-golden-v2"
+            }
+        },
+        {
+            "FunctionName": "mdm-validate-input",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-validate-input",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/service-role/mdm-validate-input-role-xn3uz0mp",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 761,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-10T01:02:40.000+0000",
+            "CodeSha256": "OelZX3uuGbZLjAbStp12eM5G8qlkjMke6b7co2qYmfc=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "3d5951cd-b28b-4ffa-881b-846634fe0b65",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-validate-input"
+            }
+        },
+        {
+            "FunctionName": "mdm-enrich-trip",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-enrich-trip",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16106423,
+            "Description": "",
+            "Timeout": 120,
+            "MemorySize": 128,
+            "LastModified": "2026-01-19T22:13:50.000+0000",
+            "CodeSha256": "qC6eByoX3cHkbk1TbHvMgiGAP7WAAFYE8i/y8nf9DRc=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "04ddbcc1-39d8-4870-b2b0-9d949075649f",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-enrich-trip"
+            }
+        },
+        {
+            "FunctionName": "mdm-log-pipeline-execution",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-log-pipeline-execution",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16105974,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-16T22:18:45.000+0000",
+            "CodeSha256": "vM3J8DitnRAMlDLV7j7FCNIiut+zGaDW7vumbdvuSo8=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "4ac8dff0-5e31-4a54-857a-8c6b992518aa",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-log-pipeline-execution"
+            }
+        },
+        {
+            "FunctionName": "VendorAutoApproveFunction",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:VendorAutoApproveFunction",
+            "Runtime": "python3.12",
+            "Role": "arn:aws:iam::473157801752:role/service-role/VendorAutoApproveFunction-role-belpn0gl",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16104999,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-06T06:36:46.000+0000",
+            "CodeSha256": "cDh1Jy4EqOPWABGsg/ZzaJSKos0OsEFvYcO1X10Rjao=",
+            "Version": "$LATEST",
+            "VpcConfig": {
+                "SubnetIds": [
+                    "subnet-0826e31fd816e808d",
+                    "subnet-06559bb761049eb5a",
+                    "subnet-0d5b87d5ae0829b87"
+                ],
+                "SecurityGroupIds": [
+                    "sg-0dc99cdb1a91dc788"
+                ],
+                "VpcId": "vpc-0f555e0765b5e806e",
+                "Ipv6AllowedForDualStack": false
+            },
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "597721f3-5fc8-428a-a406-507babd7493d",
+            "Layers": [
+                {
+                    "Arn": "arn:aws:lambda:us-east-1:473157801752:layer:MySQLLayer:2",
+                    "CodeSize": 12627564
+                }
+            ],
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/VendorAutoApproveFunction"
+            }
+        },
+        {
+            "FunctionName": "mdm-auto-approve-proposed",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-auto-approve-proposed",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16105794,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-17T05:16:14.000+0000",
+            "CodeSha256": "P6YNjDkLrbU+Cz18JfRWiYgeo+jO/NTckjNy3pKSNZM=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "2a550fc1-32c0-489a-b5ff-fc7cce9b9a56",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-auto-approve-proposed"
+            }
+        },
+        {
+            "FunctionName": "mdm-check-approval",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-check-approval",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16105776,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-19T19:06:51.000+0000",
+            "CodeSha256": "gs4tMQTxp9k7vlVzgpfng6Oi4Eh8xAeOXzLyloBugcw=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "a8df2b47-1e22-4aba-a780-99779928d83e",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-check-approval"
+            }
+        },
+        {
+            "FunctionName": "VendorProposeFunction",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:VendorProposeFunction",
+            "Runtime": "python3.12",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16139690,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-06T06:23:11.000+0000",
+            "CodeSha256": "rZ+oymS5CnB3BAhkTXBnPLvh9eLh3kGZ9IWK6W9oHb4=",
+            "Version": "$LATEST",
+            "VpcConfig": {
+                "SubnetIds": [
+                    "subnet-0826e31fd816e808d",
+                    "subnet-06559bb761049eb5a",
+                    "subnet-0d5b87d5ae0829b87"
+                ],
+                "SecurityGroupIds": [
+                    "sg-087e4e7bf6168579a"
+                ],
+                "VpcId": "vpc-0f555e0765b5e806e",
+                "Ipv6AllowedForDualStack": false
+            },
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "ac38d8a7-df81-4eae-9681-c182834e1e0f",
+            "Layers": [
+                {
+                    "Arn": "arn:aws:lambda:us-east-1:473157801752:layer:MySQLLayer:1",
+                    "CodeSize": 12637576
+                }
+            ],
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/VendorProposeFunction"
+            }
+        },
+        {
+            "FunctionName": "mdm-check-steward-approval-status",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-check-steward-approval-status",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16105498,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-17T05:13:51.000+0000",
+            "CodeSha256": "GjDveugzQjm4tJeuYFlCs+ZoDwK+4DOmMHhWfJVmUOc=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "a6500422-8dbb-4796-bc8c-cfcdef0912b4",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-check-steward-approval-status"
+            }
+        },
+        {
+            "FunctionName": "mdm-check-pending-trips",
+            "FunctionArn": "arn:aws:lambda:us-east-1:473157801752:function:mdm-check-pending-trips",
+            "Runtime": "python3.14",
+            "Role": "arn:aws:iam::473157801752:role/lambda_rds_sqs",
+            "Handler": "lambda_function.lambda_handler",
+            "CodeSize": 16105304,
+            "Description": "",
+            "Timeout": 3,
+            "MemorySize": 128,
+            "LastModified": "2026-01-19T17:33:19.000+0000",
+            "CodeSha256": "tNQk+uWtbxSB39E236es4tGGvL/0AxIg1tXFTZY7rP4=",
+            "Version": "$LATEST",
+            "TracingConfig": {
+                "Mode": "PassThrough"
+            },
+            "RevisionId": "74388a8d-9da9-453d-8c35-55e206e478b1",
+            "PackageType": "Zip",
+            "Architectures": [
+                "x86_64"
+            ],
+            "EphemeralStorage": {
+                "Size": 512
+            },
+            "SnapStart": {
+                "ApplyOn": "None",
+                "OptimizationStatus": "Off"
+            },
+            "LoggingConfig": {
+                "LogFormat": "Text",
+                "LogGroup": "/aws/lambda/mdm-check-pending-trips"
+            }
+        }
+    ]
+}
