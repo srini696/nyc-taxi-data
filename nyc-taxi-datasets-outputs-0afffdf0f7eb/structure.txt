@@ -1,4 +1,0 @@
-2026-01-04 01:38:18        751 gluedataqualitylogs/year=2026/month=01/day=04/01042026013817.json
-2026-01-04 01:51:22        751 gluedataqualitylogs/year=2026/month=01/day=04/01042026015121.json
-2026-01-04 01:38:18       1303 year=2026/month=1/day=4/run-1767490696236-part-r-00000
-2026-01-04 01:51:22       1300 year=2026/month=1/day=4/run-1767491480767-part-r-00000
