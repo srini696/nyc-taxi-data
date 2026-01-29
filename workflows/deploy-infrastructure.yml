@@ -1,0 +1,101 @@
+name: Deploy Infrastructure
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'infrastructure/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'infrastructure/**'
+  workflow_dispatch:  # Allow manual trigger
+
+env:
+  AWS_REGION: us-east-1
+  PROJECT_NAME: nyc-taxi-dw
+
+jobs:
+  validate:
+    name: Validate CloudFormation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Validate S3 template
+        run: |
+          aws cloudformation validate-template \
+            --template-body file://infrastructure/cloudformation/s3.yaml
+
+      - name: Validate Glue template
+        run: |
+          aws cloudformation validate-template \
+            --template-body file://infrastructure/cloudformation/glue.yaml
+
+      - name: Validate Lambda template
+        run: |
+          aws cloudformation validate-template \
+            --template-body file://infrastructure/cloudformation/lambda.yaml
+
+  deploy-dev:
+    name: Deploy to Dev
+    needs: validate
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment: development
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Deploy S3 Stack
+        run: |
+          aws cloudformation deploy \
+            --template-file infrastructure/cloudformation/s3.yaml \
+            --stack-name ${{ env.PROJECT_NAME }}-s3-dev \
+            --parameter-overrides \
+              Environment=dev \
+              ProjectName=${{ env.PROJECT_NAME }} \
+            --capabilities CAPABILITY_NAMED_IAM \
+            --no-fail-on-empty-changeset
+
+      - name: Deploy Glue Stack
+        run: |
+          aws cloudformation deploy \
+            --template-file infrastructure/cloudformation/glue.yaml \
+            --stack-name ${{ env.PROJECT_NAME }}-glue-dev \
+            --parameter-overrides \
+              Environment=dev \
+              ProjectName=${{ env.PROJECT_NAME }} \
+              GlueScriptsBucket=${{ env.PROJECT_NAME }}-datalake-dev-${{ secrets.AWS_ACCOUNT_ID }} \
+            --capabilities CAPABILITY_NAMED_IAM \
+            --no-fail-on-empty-changeset
+
+      - name: Deploy Lambda Stack
+        run: |
+          aws cloudformation deploy \
+            --template-file infrastructure/cloudformation/lambda.yaml \
+            --stack-name ${{ env.PROJECT_NAME }}-lambda-dev \
+            --parameter-overrides \
+              Environment=dev \
+              ProjectName=${{ env.PROJECT_NAME }} \
+              LambdaCodeBucket=${{ env.PROJECT_NAME }}-datalake-dev-${{ secrets.AWS_ACCOUNT_ID }} \
+            --capabilities CAPABILITY_NAMED_IAM \
+            --no-fail-on-empty-changeset

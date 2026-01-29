@@ -1,0 +1,56 @@
+name: Deploy Lambda Functions
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'lambda/**'
+  workflow_dispatch:
+
+env:
+  AWS_REGION: us-east-1
+  PROJECT_NAME: nyc-taxi-dw
+
+jobs:
+  deploy-lambda:
+    name: Deploy Lambda Functions
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Package and deploy publish-metrics function
+        run: |
+          cd lambda/functions/publish-metrics
+          
+          # Install dependencies
+          pip install -r requirements.txt -t .
+          
+          # Create zip package
+          zip -r ../../../publish-metrics.zip .
+          
+          cd ../../..
+          
+          # Upload to S3
+          aws s3 cp publish-metrics.zip \
+            s3://${{ env.PROJECT_NAME }}-datalake-dev-${{ secrets.AWS_ACCOUNT_ID }}/lambda/
+          
+          # Update Lambda function
+          aws lambda update-function-code \
+            --function-name ${{ env.PROJECT_NAME }}-publish-metrics-dev \
+            --s3-bucket ${{ env.PROJECT_NAME }}-datalake-dev-${{ secrets.AWS_ACCOUNT_ID }} \
+            --s3-key lambda/publish-metrics.zip

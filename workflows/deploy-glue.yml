@@ -1,0 +1,54 @@
+name: Deploy Glue Jobs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'glue/**'
+  workflow_dispatch:
+
+env:
+  AWS_REGION: us-east-1
+  PROJECT_NAME: nyc-taxi-dw
+
+jobs:
+  deploy-glue-scripts:
+    name: Deploy Glue Scripts
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Get S3 bucket name
+        id: get-bucket
+        run: |
+          BUCKET_NAME="${{ env.PROJECT_NAME }}-datalake-dev-${{ secrets.AWS_ACCOUNT_ID }}"
+          echo "bucket_name=$BUCKET_NAME" >> $GITHUB_OUTPUT
+
+      - name: Upload Glue scripts to S3
+        run: |
+          aws s3 sync glue/scripts/ \
+            s3://${{ steps.get-bucket.outputs.bucket_name }}/scripts/ \
+            --delete
+
+      - name: Update Glue jobs
+        run: |
+          for job_file in glue/jobs/*.json; do
+            if [ -f "$job_file" ]; then
+              job_name=$(basename "$job_file" .json)
+              echo "Updating Glue job: $job_name"
+              aws glue update-job \
+                --job-name "$job_name" \
+                --job-update file://"$job_file" || \
+              echo "Job $job_name may not exist, skipping update"
+            fi
+          done

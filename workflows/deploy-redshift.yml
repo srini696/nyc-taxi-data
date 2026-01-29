@@ -1,0 +1,80 @@
+name: Deploy Redshift DDL
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'redshift/**'
+  workflow_dispatch:
+
+env:
+  AWS_REGION: us-east-1
+  PROJECT_NAME: nyc-taxi-dw
+
+jobs:
+  deploy-redshift:
+    name: Deploy Redshift DDL
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      - name: Get Redshift credentials from Secrets Manager
+        id: get-secret
+        run: |
+          SECRET=$(aws secretsmanager get-secret-value \
+            --secret-id ${{ env.PROJECT_NAME }}/redshift-credentials \
+            --query SecretString \
+            --output text)
+          
+          echo "::add-mask::$(echo $SECRET | jq -r '.password')"
+          echo "host=$(echo $SECRET | jq -r '.host')" >> $GITHUB_OUTPUT
+          echo "port=$(echo $SECRET | jq -r '.port')" >> $GITHUB_OUTPUT
+          echo "database=$(echo $SECRET | jq -r '.database')" >> $GITHUB_OUTPUT
+          echo "username=$(echo $SECRET | jq -r '.username')" >> $GITHUB_OUTPUT
+          echo "password=$(echo $SECRET | jq -r '.password')" >> $GITHUB_OUTPUT
+
+      - name: Run DDL migrations
+        env:
+          PGPASSWORD: ${{ steps.get-secret.outputs.password }}
+        run: |
+          # Run DDL files in order
+          for sql_file in redshift/ddl/*.sql; do
+            echo "Running: $sql_file"
+            psql \
+              -h ${{ steps.get-secret.outputs.host }} \
+              -p ${{ steps.get-secret.outputs.port }} \
+              -d ${{ steps.get-secret.outputs.database }} \
+              -U ${{ steps.get-secret.outputs.username }} \
+              -f "$sql_file"
+          done
+
+      - name: Run view migrations
+        env:
+          PGPASSWORD: ${{ steps.get-secret.outputs.password }}
+        run: |
+          for sql_file in redshift/views/*.sql; do
+            if [ -f "$sql_file" ]; then
+              echo "Running: $sql_file"
+              psql \
+                -h ${{ steps.get-secret.outputs.host }} \
+                -p ${{ steps.get-secret.outputs.port }} \
+                -d ${{ steps.get-secret.outputs.database }} \
+                -U ${{ steps.get-secret.outputs.username }} \
+                -f "$sql_file"
+            fi
+          done
