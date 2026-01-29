@@ -1,0 +1,72 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: S3 Buckets for NYC Taxi Data Warehouse
+
+Parameters:
+  Environment:
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - staging
+      - prod
+  
+  ProjectName:
+    Type: String
+    Default: nyc-taxi-dw
+
+Resources:
+  DataLakeBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${ProjectName}-datalake-${Environment}-${AWS::AccountId}'
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: aws:kms
+              KMSMasterKeyID: !Ref KMSKey
+      VersioningConfiguration:
+        Status: Enabled
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      Tags:
+        - Key: Project
+          Value: !Ref ProjectName
+        - Key: Environment
+          Value: !Ref Environment
+
+  KMSKey:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: KMS key for NYC Taxi DW encryption
+      EnableKeyRotation: true
+      KeyPolicy:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: Enable IAM User Permissions
+            Effect: Allow
+            Principal:
+              AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:root'
+            Action: 'kms:*'
+            Resource: '*'
+
+  KMSKeyAlias:
+    Type: AWS::KMS::Alias
+    Properties:
+      AliasName: !Sub 'alias/${ProjectName}-key-${Environment}'
+      TargetKeyId: !Ref KMSKey
+
+Outputs:
+  DataLakeBucketName:
+    Description: Name of the data lake bucket
+    Value: !Ref DataLakeBucket
+    Export:
+      Name: !Sub '${ProjectName}-${Environment}-DataLakeBucket'
+  
+  KMSKeyArn:
+    Description: ARN of the KMS key
+    Value: !GetAtt KMSKey.Arn
+    Export:
+      Name: !Sub '${ProjectName}-${Environment}-KMSKeyArn'

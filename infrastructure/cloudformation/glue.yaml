@@ -1,0 +1,83 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS Glue Resources for NYC Taxi Data Warehouse
+
+Parameters:
+  Environment:
+    Type: String
+    Default: dev
+  
+  ProjectName:
+    Type: String
+    Default: nyc-taxi-dw
+  
+  GlueScriptsBucket:
+    Type: String
+    Description: S3 bucket containing Glue scripts
+
+Resources:
+  GlueDatabase:
+    Type: AWS::Glue::Database
+    Properties:
+      CatalogId: !Ref AWS::AccountId
+      DatabaseInput:
+        Name: !Sub '${ProjectName}_${Environment}'
+        Description: NYC Taxi Data Warehouse Database
+
+  GlueServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub '${ProjectName}-glue-role-${Environment}'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: glue.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole
+      Policies:
+        - PolicyName: S3Access
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                  - s3:ListBucket
+                Resource:
+                  - !Sub 'arn:aws:s3:::${GlueScriptsBucket}'
+                  - !Sub 'arn:aws:s3:::${GlueScriptsBucket}/*'
+
+  TripETLJob:
+    Type: AWS::Glue::Job
+    Properties:
+      Name: !Sub '${ProjectName}-trip-etl-${Environment}'
+      Role: !GetAtt GlueServiceRole.Arn
+      Command:
+        Name: glueetl
+        ScriptLocation: !Sub 's3://${GlueScriptsBucket}/scripts/trip_etl.py'
+        PythonVersion: '3'
+      DefaultArguments:
+        '--job-language': python
+        '--enable-metrics': 'true'
+        '--enable-continuous-cloudwatch-log': 'true'
+        '--environment': !Ref Environment
+      GlueVersion: '4.0'
+      MaxRetries: 1
+      Timeout: 120
+      WorkerType: G.1X
+      NumberOfWorkers: 2
+      Tags:
+        Project: !Ref ProjectName
+        Environment: !Ref Environment
+
+Outputs:
+  GlueDatabaseName:
+    Description: Name of the Glue database
+    Value: !Ref GlueDatabase
+  
+  GlueJobName:
+    Description: Name of the Glue ETL job
+    Value: !Ref TripETLJob
